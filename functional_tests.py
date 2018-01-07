@@ -32,7 +32,7 @@ class NewVisitorTest(unittest.TestCase):
 
         # She types "Buy peacok feather" into a text box (Edith's hobby
         # is tying flu-fishing lures)
-        inputbox.send_keys('Buy peacok feathers')
+        inputbox.send_keys('Buy peacock feathers')
 
         # When she hits enter, the page updates, and now the page lists
         # "1: Buy peacock feathers" as an item in a to-do list
@@ -50,7 +50,7 @@ class NewVisitorTest(unittest.TestCase):
         # The page updates again, and now shows both items on her list
         self.check_for_row_in_list_table('1: Buy peacock feathers')
         self.check_for_row_in_list_table('2: Use peacock feathers to make a fly')
-        
+
         # Edith wonders whether the site will remember her list. Then she sees
         # that the site has generated a unique URL for her -- there is some
         # explanatory text to that effect.
