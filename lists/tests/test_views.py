@@ -79,6 +79,12 @@ class ListViewTest(TestCase):
 
         self.assertRedirects(response, f'/lists/{correct_list.id}/')
 
+    def test_displays_item_form(self):
+        list_ = List.objects.create()
+        response = self.client.get(f'/lists/{list_.id}/')
+        self.assertIsInstance(response.context['form'], ItemForm)
+        self.assertContains(response, 'name="text"')
+        
     def test_for_invalid_input_nothing_saved_to_db(self):
         self.post_invalid_input()
         self.assertEqual(Item.objects.count(), 0)
