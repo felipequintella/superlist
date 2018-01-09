@@ -23,5 +23,5 @@ def create_pre_authenticated_session(email):
     session[SESSION_KEY] = user.pk
     session[BACKEND_SESSION_KEY] = settings.AUTHENTICATION_BACKENDS[0]
     session.save()
-    self.stdout.write("Saved key:" + session.session_key)
+    print("Saved key:" + session.session_key)
     return session.session_key
