@@ -4,8 +4,6 @@ from .server_tools import create_session_on_server
 from .management.commands.create_session import create_pre_authenticated_session
 import time
 
-User = get_user_model()
-
 
 class MyListsTest(FunctionalTest):
     def create_pre_authenticated_session(self, email):
@@ -30,5 +28,4 @@ class MyListsTest(FunctionalTest):
         # Edith is a logged-in user
         self.create_pre_authenticated_session(email)
         self.browser.get(self.live_server_url)
-        time.sleep(60)
         self.wait_to_be_logged_in(email)
