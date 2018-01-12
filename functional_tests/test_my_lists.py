@@ -32,5 +32,4 @@ class MyListsTest(FunctionalTest):
         # Edith is a logged-in user
         self.create_pre_authenticated_session(email)
         self.browser.get(self.live_server_url)
-        time.sleep(60)
         self.wait_to_be_logged_in(email)
