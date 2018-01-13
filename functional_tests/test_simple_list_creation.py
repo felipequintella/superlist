@@ -38,6 +38,7 @@ class NewVisitorTest(FunctionalTest):
         self.wait_for_row_in_list_table('2: Use peacock feathers to make a fly')
 
         # Satisfied, she goes back to sleep
+        self.fail()
 
     def test_multiple_users_can_start_lists_at_different_urls(self):
         # Edith starts a new to-do list
