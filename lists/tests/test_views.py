@@ -6,7 +6,7 @@ from django.http import HttpRequest
 from django.template.loader import render_to_string
 from django.utils.html import escape
 
-from lists.views import home_page, new_list
+from lists.views import home_page, new_list, share_list
 from lists.models import Item, List
 from lists.forms import (
     DUPLICATE_ITEM_ERROR, EMPTY_ITEM_ERROR,
@@ -203,3 +203,16 @@ class MyListsTest(TestCase):
         correct_user = User.objects.create(email='a@b.com')
         response = self.client.get('/lists/users/a@b.com/')
         self.assertEqual(response.context['owner'], correct_user)
+
+
+class ShareListTest(TestCase):
+    def test_POST_redirects_to_list(self):
+        list_ = List.objects.create()
+        response = self.client.post(f'/lists/{list_.id}/share')
+        self.assertRedirects(response, f'/lists/{list_.id}/')
+
+    def test_POST_adds_shared_with(self):
+        user = User.objects.create(email='a@b.com')
+        list_ = List.objects.create()
+        response = self.client.post(f'/lists/{list_.id}/share', data={'sharee': user.email})
+        self.assertTrue(user in list_.shared_with.all())
